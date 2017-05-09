@@ -45,12 +45,17 @@ Digital Engine - GE Current
    - Simplest from an implementation point-of-view.
    - No library or file parsing overhead.
    - Easy to change.
-   - Integrates well with CloudFoundry.
+   - Integrates well with CloudFoundry.\*
  - Cons
    - Changing multiple values is difficult.
    - Initialization without a library can be tricky. 
+   
+<sub>\* - YMMV</sub>
 
 ---
 
 ### Environment Variables Demo
 
+---
+
+### 
