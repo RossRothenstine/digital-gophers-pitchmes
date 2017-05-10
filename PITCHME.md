@@ -53,7 +53,7 @@ GE Current + Go
  - Pros
    - Simplest from an implementation point-of-view.
    - No library or file parsing overhead.
-   - Easy to change.
+   - Easy to change single values.
    - Integrates well with CloudFoundry.\*
  - Cons
    - Changing multiple values is difficult.
@@ -165,10 +165,10 @@ Configurations then become keys e.g., `dev:redis` or `dev:microserviceA`, which 
 
   - Pros
     - Centralized.
-    - Maximum overhead.
-    - Ability for zero-down time when a configuration is changed.
+    - Ability for zero-down time when a configuration value is changed.
   - Cons
     - Centralized. If configuration server is down, then apps cannot start.
+    - Maximum overhead.
     - Not integrated well with CloudFoundry.
     
 ---
