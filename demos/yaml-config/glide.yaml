@@ -1,0 +1,3 @@
+package: github.com/RossRothenstine/digital-gophers-pitchmes/demos/yaml-config
+import:
+- package: gopkg.in/yaml.v2
