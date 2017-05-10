@@ -30,11 +30,12 @@ GE Current + Go
  - Configuration names should be descriptive and document themselves.
    - Be consistent with naming (URI vs URL).
    - Verbose is generally better than abbreviation e.g. `MY_MICROSERVICE_URL` vs `MMS_URL`.
-   - Prefer to group via name e.g. `REDIS_HOST` and `REDIS_PORT`
+   - Prefer to group via functionality e.g. `REDIS_HOST` and `REDIS_PORT`
  - Prefer simple values as opposed to complex structures (embedded JSON, yaml)
    - `FOO: { "bar": 42 }` vs `FOO_BAR: 42`
    - Lists are okay, just use a sane delimiter - `FOO: bar baz bang`
  - Don't overconfigure.
+ - Prefer a single source vs. multiple sources.
  - Prefer to use structs to hold configurations rather than variables for each property.
    
 ---
