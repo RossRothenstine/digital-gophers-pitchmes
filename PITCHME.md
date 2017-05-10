@@ -8,6 +8,13 @@ Digital Engine - GE Current
 
 ---
 
+GE Current + Go
+
+ - WebSocket Push Server for Events in real time.
+ - HTTP Load Testing
+
+---
+
 ### Configuration Overview
 
  - `configuration` => Any external property of a system that when modified changes behavior of the system.
@@ -27,6 +34,7 @@ Digital Engine - GE Current
  - Prefer simple values as opposed to complex structures (embedded JSON, yaml)
    - `FOO: { "bar": 42 }` vs `FOO_BAR: 42`
    - Lists are okay, just use a sane delimiter - `FOO: bar baz bang`
+ - Don't overconfigure.
  - Prefer to use structs to hold configurations rather than variables for each property.
    
 ---
@@ -35,6 +43,7 @@ Digital Engine - GE Current
 
  - Environment Variables
  - File-based
+ - Custom User Provided Service (CUPS)
  - Centralized Configuration Server
  
 ---
@@ -58,6 +67,11 @@ Digital Engine - GE Current
 
 ---
 
+ - Raw environment configuration is boring and tedious.
+ - Packages like [envconfig](https://github.com/kelseyhightower/envconfig) ease the process tremendously.
+
+---
+
 ### CloudFoundry Notes
 
  - Credentials are exposed through `VCAP_SERVICES`.
@@ -72,4 +86,93 @@ Digital Engine - GE Current
  - Allows to parse VCAP_SERVICES and set environment variables before the application runs.
  - Configuration code gets to stay succinct and beautiful.
  
+--- 
 
+### File-based
+
+ - Pros
+   - Very readable.
+   - Easy to change multiple values, point to different files.
+ - Cons
+   - Doesn't play well with CloudFoundry.
+
+--- 
+
+### File-based Demo
+
+---
+
+### CUPS
+
+ - Pros
+   - Integrates well with CloudFoundry.
+   - Define in one space, reuse across multiple applications.
+   - No run script necessary.
+ - Cons
+   - Tight integration with CloudFoundry
+   - Probably will have headaches doing local development.
+   - Updating CUPS isn't necessarily easy.
+   
+---
+
+```json
+"user-provided": [
+   {
+    "credentials": {
+     "clientId": "my_client",
+     "clientSecret": "super_secret",
+     "issuerUri": "http://foobar.com/token",
+     "uri": "http://foobar.com"
+    },
+    "label": "user-provided",
+    "name": "my-microservice",
+    "syslog_drain_url": "",
+    "tags": [],
+    "volume_mounts": []
+   },
+   {
+    "credentials": {
+     "foobar": {
+      "password": "my_password",
+      "username": "my_user"
+     }
+    },
+    "label": "user-provided",
+    "name": "another-service",
+    "syslog_drain_url": "",
+    "tags": [],
+    "volume_mounts": []
+   }
+  ]
+
+```
+
+---
+
+### CUPS demo
+
+---
+
+### Centralized Configuration Service
+
+A service that is usually backed by some storage like Redis or Postgres that will be the central authority on configuration values.
+
+Configurations then become keys e.g., `dev:redis` or `dev:microserviceA`, which are then queried for.
+
+[Consul](https://www.consul.io)
+
+---
+
+  - Pros
+    - Centralized.
+    - Maximum overhead.
+    - Ability for zero-down time when a configuration is changed.
+  - Cons
+    - Centralized. If configuration server is down, then apps cannot start.
+    - Not integrated well with CloudFoundry.
+    
+---
+
+Thanks!
+
+Q/A
