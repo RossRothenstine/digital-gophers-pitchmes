@@ -32,6 +32,7 @@ func (rc *RedisConfig) String() string {
 }
 
 func main() {
+	flag.Parse()
 	config, err := initConfig()
 	if err != nil {
 		panic(err)
