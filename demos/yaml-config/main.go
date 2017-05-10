@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
-	"strconv"
 
 	yaml "gopkg.in/yaml.v2"
 )
@@ -59,22 +58,4 @@ func readAll(file string) (bytes []byte, err error) {
 	}
 	bytes, err = ioutil.ReadAll(f)
 	return
-}
-
-func lookupEnvInt(envvar string) (i int, ok bool) {
-	var value string
-	var err error
-
-	if value, ok = os.LookupEnv(envvar); !ok {
-		return
-	}
-
-	if i, err = strconv.Atoi(value); err != nil {
-		panic(err)
-	}
-	return
-}
-
-func formatConfigError(envvar string) (err error) {
-	return fmt.Errorf("%s is not defined in the environment.", envvar)
 }
