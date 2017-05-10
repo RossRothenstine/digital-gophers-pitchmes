@@ -169,7 +169,7 @@ Configurations then become keys e.g., `dev:redis` or `dev:microserviceA`, which 
   - Cons
     - Centralized. If configuration server is down, then apps cannot start.
     - Maximum overhead.
-    - Not integrated well with CloudFoundry.
+    - Does not integrate well with CloudFoundry.
     
 ---
 
