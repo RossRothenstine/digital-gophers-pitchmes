@@ -45,12 +45,31 @@ Digital Engine - GE Current
    - Simplest from an implementation point-of-view.
    - No library or file parsing overhead.
    - Easy to change.
-   - Integrates well with CloudFoundry.
+   - Integrates well with CloudFoundry.\*
  - Cons
    - Changing multiple values is difficult.
    - Initialization without a library can be tricky. 
+   
+<sub>\* - YMMV</sub>
 
 ---
 
 ### Environment Variables Demo
+
+---
+
+### CloudFoundry Notes
+
+ - Credentials are exposed through `VCAP_SERVICES`.
+ - VCAP_SERVICES is a JSON encoded environment variable.
+ - While libraries exist to parse and use VCAP_SERVICES, we can do better. :)
+ 
+---
+
+### JQ for VCAP_SERVICES
+
+ - `jq` => command line json queries and transforming.
+ - Allows to parse VCAP_SERVICES and set environment variables before the application runs.
+ - Configuration code gets to stay succinct and beautiful.
+ 
 
