@@ -115,7 +115,8 @@ GE Current + Go
    - Define in one space, reuse across multiple applications.
    - No run script necessary.
  - Cons
-   - Tight integration with CloudFoundry
+   - Tight integration with CloudFoundry.
+   - Unable to tag or label services.
    - Probably will have headaches doing local development.
    - Updating CUPS isn't necessarily easy.
    
