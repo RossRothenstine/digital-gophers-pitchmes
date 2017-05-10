@@ -1,0 +1,2 @@
+worker: envconfig-config || sleep 60
+

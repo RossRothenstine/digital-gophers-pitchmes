@@ -1,20 +1,21 @@
 package main
 
 import (
+	"flag"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"strconv"
 
-	"github.com/kelseyhightower/envconfig"
+	yaml "gopkg.in/yaml.v2"
 )
 
-const (
-	EnvVarRedisHost = "REDIS_HOST"
-	EnvVarRedisPort = "REDIS_PORT"
+var (
+	configFile = flag.String("config", "config.yml", "YAML Configuration File.")
 )
 
 type Config struct {
-	Redis *RedisConfig
+	Redis *RedisConfig `yaml:"redis"`
 }
 
 func (c *Config) String() string {
@@ -22,9 +23,9 @@ func (c *Config) String() string {
 }
 
 type RedisConfig struct {
-	Host     string `envconfig:"REDIS_HOST" required:"true"`
-	Password string `envconfig:"REDIS_PASSWORD" required:"true"`
-	Port     int    `envconfig:"REDIS_PORT" required:"true"`
+	Host     string `yaml:"host"`
+	Port     int    `yaml:"port"`
+	Password string `yaml:"password"`
 }
 
 func (rc *RedisConfig) String() string {
@@ -37,13 +38,26 @@ func main() {
 		panic(err)
 	}
 	fmt.Printf("%v\n", config)
-	for {
-	}
 }
 
 func initConfig() (c *Config, err error) {
 	c = &Config{}
-	err = envconfig.Process("app", c)
+	var bytes []byte
+
+	if bytes, err = readAll(*configFile); err != nil {
+		return
+	}
+
+	err = yaml.Unmarshal(bytes, &c)
+	return
+}
+
+func readAll(file string) (bytes []byte, err error) {
+	var f *os.File
+	if f, err = os.Open(file); err != nil {
+		return
+	}
+	bytes, err = ioutil.ReadAll(f)
 	return
 }
 
