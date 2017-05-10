@@ -1,0 +1,10 @@
+hash: be44f88dc5245db32c54e904f97a30a369d2117314db91766119de7e309c8365
+updated: 2017-05-10T09:08:09.915296421-07:00
+imports:
+- name: github.com/cloudfoundry-community/go-cfenv
+  version: f920e9562d5f951cbf11785728f67258c38a10d0
+- name: github.com/kelseyhightower/envconfig
+  version: f611eb38b3875cc3bd991ca91c51d06446afa14c
+- name: github.com/mitchellh/mapstructure
+  version: cc8532a8e9a55ea36402aa21efdf403a60d34096
+testImports: []
