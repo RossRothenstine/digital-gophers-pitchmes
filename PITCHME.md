@@ -35,9 +35,14 @@ GE Current + Go
    - `FOO: { "bar": 42 }` vs `FOO_BAR: 42`
    - Lists are okay, just use a sane delimiter - `FOO: bar baz bang`
  - Don't overconfigure.
+   
+---
+
+### Best Practices (cont.)
+
  - Prefer a single source vs. multiple sources.
  - Prefer to use structs to hold configurations rather than variables for each property.
-   
+
 ---
 
 ### Configuration Systems
